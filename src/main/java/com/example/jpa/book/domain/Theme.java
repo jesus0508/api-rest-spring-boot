@@ -2,8 +2,7 @@ package com.example.jpa.book.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name="themes")
+@Entity(name="themes")
 public class Theme {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -11,8 +10,7 @@ public class Theme {
     @Column(unique = true)
     private String name;
 
-    public Theme() {
-    }
+    public Theme() { }
 
     public Theme(Long id, String name) {
         this.id = id;

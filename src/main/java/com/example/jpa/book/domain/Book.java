@@ -3,8 +3,7 @@ package com.example.jpa.book.domain;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
-@Table(name="books")
+@Entity(name="books")
 public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,11 +14,10 @@ public class Book {
     private String title;
     @ManyToMany
     private Set<Author> authorSet;
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Theme> themeSet;
 
-    public Book() {
-    }
+    public Book() { }
 
     public Book(String isbn, String title, Set<Author> authorSet, Set<Theme> themeSet) {
         this.isbn = isbn;

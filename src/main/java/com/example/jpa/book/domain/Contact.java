@@ -1,8 +1,11 @@
 package com.example.jpa.book.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Embeddable
 public class Contact {
     @Column(unique = true,nullable = false)

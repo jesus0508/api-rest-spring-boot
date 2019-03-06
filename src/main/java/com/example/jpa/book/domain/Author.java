@@ -2,8 +2,7 @@ package com.example.jpa.book.domain;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "authors")
+@Entity(name = "authors")
 public class Author {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,19 +11,18 @@ public class Author {
     private String surname;
     @Embedded
     private Contact contact;
-    @ManyToOne
-    @JoinColumn
-    private Style style;
+    /*@ManyToOne
+    //@JoinColumn
+    private Style style;*/
 
-    public Author() {
-    }
+    public Author() { }
 
     public Author(Long id,String name, String surname, Contact contact, Style style) {
         this.id=id;
         this.name = name;
         this.surname = surname;
         this.contact = contact;
-        this.style = style;
+        //this.style = style;
     }
 
     public Long getId() {
@@ -59,11 +57,11 @@ public class Author {
         this.contact = contact;
     }
 
-    public Style getStyle() {
+  /*  public Style getStyle() {
         return style;
     }
 
     public void setStyle(Style style) {
         this.style = style;
-    }
+    }*/
 }
