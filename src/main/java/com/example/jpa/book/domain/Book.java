@@ -12,18 +12,24 @@ public class Book {
     private String isbn;
     @Column(nullable = false,unique = true)
     private String title;
-    @ManyToMany
-    private Set<Author> authorSet;
     @ManyToMany(fetch = FetchType.EAGER)
-    private Set<Theme> themeSet;
+    @JoinTable(name="authors_books",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "author_id"))
+    private Set<Author> authors;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name="books_themes",
+                joinColumns = @JoinColumn(name = "book_id"),
+                inverseJoinColumns = @JoinColumn(name = "theme_id"))
+    private Set<Theme> themes;
 
     public Book() { }
 
-    public Book(String isbn, String title, Set<Author> authorSet, Set<Theme> themeSet) {
+    public Book(String isbn, String title, Set<Author> authors, Set<Theme> themes) {
         this.isbn = isbn;
         this.title = title;
-        this.authorSet = authorSet;
-        this.themeSet = themeSet;
+        this.authors = authors;
+        this.themes = themes;
     }
 
     public Long getId() {
@@ -50,19 +56,20 @@ public class Book {
         this.title = title;
     }
 
-    public Set<Author> getAuthorSet() {
-        return authorSet;
+    public Set<Author> getAuthors() {
+        return authors;
     }
 
-    public void setAuthorSet(Set<Author> authorSet) {
-        this.authorSet = authorSet;
+    public void setAuthors(Set<Author> authors) {
+        this.authors = authors;
     }
 
-    public Set<Theme> getThemeSet() {
-        return themeSet;
+    public Set<Theme> getThemes() {
+        return themes;
     }
 
-    public void setThemeSet(Set<Theme> themeSet) {
-        this.themeSet = themeSet;
+    public void setThemes(Set<Theme> themes) {
+        this.themes = themes;
     }
+
 }

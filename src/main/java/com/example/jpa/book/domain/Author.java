@@ -1,6 +1,7 @@
 package com.example.jpa.book.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity(name = "authors")
 public class Author {

@@ -1,5 +1,6 @@
 package com.example.jpa.book.service.impl;
 
+import com.example.jpa.book.domain.Author;
 import com.example.jpa.book.domain.Book;
 import com.example.jpa.book.repository.BookRepository;
 import com.example.jpa.book.service.BookService;
@@ -20,16 +21,32 @@ public class BookServiceImpl implements BookService {
         bookRepository.findAll().forEach(book -> bookSet.add(book));
         return bookSet;
     }
-
+    /**
+     * IMPORTANTE REVISARRRR!!!!!
+     * Metodo que buscar por el tema de nombre 1ra forma
+     * *
+     * */
     @Override
-    public Set<Book> getAllBooksByTheme() {
-
-        return null;
+    public Set<Book> getAllBooksByTheme(String themeName) {
+        Set<Book> bookSet=new HashSet<>();
+        bookRepository.findByThemesName(themeName).forEach(book -> bookSet.add(book));
+        return bookSet;
+    }
+    /**
+     * IMPORTANTE REVISARRRR!!!!!
+     * Metodo que buscar por clase Author
+     * *
+     * */
+    @Override
+    public Set<Book> getAllBooksByAuthor(Author author) {
+        Set<Book> bookSet=new HashSet<>();
+        bookRepository.findByAuthors(author).forEach(book -> bookSet.add(book));
+        return bookSet;
     }
 
     @Override
-    public Set<Book> getAllBooksByAuthor() {
-        return null;
+    public Book getBook(Long id) {
+        return bookRepository.findById(id).get();
     }
 
     @Override
